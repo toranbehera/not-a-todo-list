@@ -12,6 +12,17 @@ let taskSchema = object({
     finished: boolean().default(false)
 })
 
+const instance = axios.create({
+    baseURL: 'http://localhost:3000/tasks',
+    timeout: 1000,
+    headers: {Accept : '*/*'}
+})
+
+instance.interceptors.request.use(function(config){
+    config.headers['x-request-id'] = nanoid();
+    return config;
+})
+
 export default function useTasks(){
         const url = 'http://localhost:3000/tasks';
         const {data, refetch} = useFetch<Task>(url);
@@ -25,7 +36,7 @@ export default function useTasks(){
                 try {
                     const cleanedTask = taskSchema.cast(task);
                     await taskSchema.validate(cleanedTask);
-                    await axios.post(url, cleanedTask);
+                    await instance.post('/', cleanedTask);
                     
                     dispatch(taskAdded(cleanedTask));
                     refetch();

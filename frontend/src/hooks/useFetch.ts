@@ -16,7 +16,6 @@ export default function useFetch<T>(url: string){
 
     useEffect(() => {
         fetchData();
-        console.log('fetchData rerendered');
     }, [fetchData]);
     
     return {data, error, refetch: fetchData};

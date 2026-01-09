@@ -1,6 +1,5 @@
 import { useContext, useState } from "react"
 import { ReducersContext } from "./TasksContext";
-import { useAppDispatch } from "../hooks/reduxHooks";
 import { type Task } from "../app/features/tasks/tasksSlice";
 
 export default function CreateTask(){
@@ -13,25 +12,15 @@ export default function CreateTask(){
     }
 
     return (
-        <div className="sticky top-20 pt-5 bg-white">
-            <div className="flex justify-center gap-4 hover:outline-1 outline-gray-400 p-5 shadow-lg ">
+        <div className="sticky">
+            <div className="flex sticky bg-white border-1 border-black/10 justify-center gap-4 p-5 shadow-lg">
                 <input 
                     className="border-1 rounded-md p-2 shadow-xs"
                     onChange={(e) => setInputText(e.target.value)} 
                     placeholder='enter'
                 />
                 <button 
-                    className="
-                        bg-green-700 
-                        shadow-md
-                        hover:bg-green-800
-                        focus:outline-1
-                        focus:outline-gray-600
-                        active:opacity-75
-                        p-2 
-                        rounded-lg 
-                        text-white
-                    "
+                    className="button bg-green-700 hover:bg-green-800"
                     onClick={() => handleClick({name: inputText} as Task)}
                 >
                     Create Task

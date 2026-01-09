@@ -18,7 +18,7 @@ const MemoizedCard = memo(function TaskCard({id, name, finished}: Task){
     }
 
     return (
-        <div className="flex justify-between items-center 
+        <div className="flex justify-between items-center border-2 border-black/10
             shadow-xl rounded-lg bg-blue-400 text-white m-5 p-5"
         >
             <div className="flex gap-3">
